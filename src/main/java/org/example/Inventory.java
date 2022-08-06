@@ -31,21 +31,18 @@ public class Inventory {
             Guitar guitar = (Guitar) i.next();
             // Ignore serial number since that's unique
             // Ignore price since that's unique
-            String builder = searchGuitar.getBuilder();
-            if ((builder != null) && (!builder.equals("")) && (!builder.equals(guitar.getBuilder())))
+            if(searchGuitar.getBuilder() != guitar.getBuilder())
                 continue;
-            String model = searchGuitar.getModel();
-            if((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel())))
+            String model = searchGuitar.getModel().toLowerCase();
+            if((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase())))
                 continue;
-            String type = searchGuitar.getType();
-            if((type != null) && (!type.equals("")) && (!type.equals(guitar.getType())))
+            if(searchGuitar.getType() != guitar.getType())
                 continue;
-            String backWood = searchGuitar.getBackWood();
-            if((backWood != null) && (!backWood.equals("")) && (!backWood.equals(guitar.getBackWood())))
+            if(searchGuitar.getBackWood() != guitar.getBackWood())
                 continue;
-            String topWood = searchGuitar.getTopWood();
-            if((topWood != null) && (!topWood.equals("")) && (!topWood.equals(guitar.getTopWood())))
+            if(searchGuitar.getTopWood() != guitar.getTopWood())
                 continue;
+            return guitar;
         }
         return null;
     }
