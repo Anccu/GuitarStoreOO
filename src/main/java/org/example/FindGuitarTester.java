@@ -1,13 +1,20 @@
 package org.example;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import java.util.Iterator;
 import java.util.List;
 
 public class FindGuitarTester {
 
+    static Logger logger = Logger.getLogger(FindGuitarTester.class);
     public static void main(String[] args) {
         // Set up Rick's guitar inventory
-
+        //BasicConfigurator.configure();
+        //PropertyConfigurator.configure(args[0]);
+        logger.info("inizio - loger");
         Inventory inventory = new Inventory();
         initializeInventory(inventory);
 
@@ -18,11 +25,11 @@ public class FindGuitarTester {
 
         List matchingGuitars = inventory.search(whatErinLikes);
         if(!matchingGuitars.isEmpty()) {
-            System.out.println("Erin, you might like these guitars:");
+            logger.info("Erin, you might like these guitars:");
             for(Iterator i = matchingGuitars.iterator(); i.hasNext(); ) {
                 Guitar guitar = (Guitar) i.next();
                 GuitarSpec guitarSpec = guitar.getSpec();
-                System.out.println("  We have a " +
+                logger.info("  We have a " +
                         guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " +
                         guitarSpec.getType() + " guitarSpec.\n     " +
                         guitarSpec.getBackWood() + " back and sides,\n     " +
@@ -30,7 +37,7 @@ public class FindGuitarTester {
                         guitar.getPrice() + "!\n  ----");
             }
         } else {
-            System.out.println("Sorry, Erin, we have nothing for you");
+            logger.info("Sorry, Erin, we have nothing for you");
         }
     }
 
